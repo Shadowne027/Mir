@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Permitir a todos los bots acceder al sitio
+Sitemap: https://mimiria.vercel.app/sitemap.xml
+
+# Rutas permitidas
+Allow: /$
+Allow: /index.html
+
+# Rutas privadas (chat requiere autenticación)
+Disallow: /chat
