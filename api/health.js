@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   const result = {
     ok: false,
     build: "mimir-v6-openai",
-    model: "gpt-5-mini + gpt-5-nano",
+    model: "gpt-5-mini-2025-08-07 + gpt-5-nano-2025-08-07",
     mongo: false,
     mongoError: null,
     openai: false,
