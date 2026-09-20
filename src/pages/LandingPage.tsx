@@ -905,7 +905,7 @@ function Footer() {
               <LogoMark size={36} />
               <span className="font-display text-xl font-semibold tracking-tight text-white">MIMIR IA</span>
             </div>
-            <p className="max-w-sm text-sm leading-relaxed">Plan de mejoramiento académico a partir de inteligencia artificial. Proyecto productivo SENA — Programa 233108.</p>
+            <p className="max-w-sm text-sm leading-relaxed">Plan de mejoramiento académico a partir de inteligencia artificial. Proyecto productivo SENA — Programa 233108. Creado por Cristian C. Caro M. y Camilo H. Torres S.</p>
           </div>
           <div className="md:col-span-3">
             <div className="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-white/50">Institución</div>

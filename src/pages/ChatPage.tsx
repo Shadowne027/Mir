@@ -80,6 +80,8 @@ export default function ChatPage() {
   const [input, setInput] = useState("");
   const [loadingHistory, setLoadingHistory] = useState(true);
   const [thinking, setThinking] = useState(false);
+  const [thinkingPhase, setThinkingPhase] = useState<"thinking" | "analyzing" | "searching" | "generating">("thinking");
+  const [lastError, setLastError] = useState<{ msgId: string; error: string } | null>(null);
   const [streamingId, setStreamingId] = useState<string | null>(null);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [health, setHealth] = useState<HealthStatus | null>(null);
@@ -279,6 +281,15 @@ export default function ChatPage() {
         setStreamingId(null);
       }
     }, 26);
+  };
+
+  const handleRetry = async (errorMsgId: string) => {
+    setLastError(null);
+    const convo = conversations.find((c) => c.id === activeId);
+    if (!convo) return;
+    const userMsg = convo.messages.find((m) => m.role === "user" && m.at && Date.now() - m.at < 120000);
+    if (!userMsg) return;
+    await handleSend(userMsg.content);
   };
 
   const handleSend = async (raw?: string) => {
@@ -640,6 +651,14 @@ export default function ChatPage() {
                                 <Zap size={10} className="text-[var(--amber)]" />
                                 Respuesta guardada en caché · no se gastaron tokens
                               </div>
+                            )}
+                            {!m.content && !m.sources && lastError?.msgId === m.id && (
+                              <button
+                                onClick={() => handleRetry(m.id!)}
+                                className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-red-500/20 px-3 py-1.5 text-xs font-medium text-red-300 transition-colors hover:bg-red-500/30"
+                              >
+                                <RefreshCw size={12} /> Reintentar
+                              </button>
                             )}
                             {m.followUps && m.followUps.length > 0 && streamingId === null && i === active.messages.length - 1 && (
                               <div className="mt-2.5 flex flex-wrap gap-1.5">

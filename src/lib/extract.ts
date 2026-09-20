@@ -18,8 +18,8 @@ export const MAX_DOCUMENTS = 5;                 // 5 documentos por carga
 export const MAX_DOC_CHARS = 20_000;            // texto que se envía por documento
 
 /** Lado mayor al que se reducen las fotos antes de enviarlas. */
-const IMAGE_MAX_SIDE = 1600;
-const IMAGE_QUALITY = 0.82;
+const IMAGE_MAX_SIDE = 800;     // 1600 → 800px para ahorrar tokens
+const IMAGE_QUALITY = 0.75;    // 82% → 75% para ahorrar tokens
 
 export const DOCUMENT_EXTENSIONS = [
   "pdf", "docx", "xlsx", "xlsm", "pptx",
